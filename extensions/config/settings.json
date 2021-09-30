@@ -1,0 +1,16 @@
+{
+  "provider": "aws-s3",
+  "providerOptions": {
+    "accessKeyId": "AKIAQ4RLSB52Z5D6QI2L",
+    "secretAccessKey": "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
+    ",
+    "region": "us-west-1",
+    "params": {
+      "Bucket": "strapi-seanmodd-amazon"
+    }
+  }
+}
+
+
+
+
