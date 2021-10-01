@@ -1,4 +1,4 @@
-var stripe = require("stripe")(process.env.STRIPE_SK);
+var stripe = require('stripe')(process.env.STRIPE_SK);
 
 module.exports = {
   lifecycles: {
@@ -12,21 +12,21 @@ module.exports = {
       data.stripeID = customer.id;
 
       data.paymentMethods = [
-        { brand: "", last4: "" },
-        { brand: "", last4: "" },
-        { brand: "", last4: "" },
+        { brand: '', last4: '' },
+        { brand: '', last4: '' },
+        { brand: '', last4: '' },
       ];
 
       data.contactInfo = [
-        { name: data.username, email: data.email, phone: "" },
-        { name: "", email: "", phone: "" },
-        { name: "", email: "", phone: "" },
+        { name: data.username, email: data.email, phone: '' },
+        { name: '', email: '', phone: '' },
+        { name: '', email: '', phone: '' },
       ];
 
       data.locations = [
-        { street: "", zip: "", city: "", state: "" },
-        { street: "", zip: "", city: "", state: "" },
-        { street: "", zip: "", city: "", state: "" },
+        { street: '', zip: '', city: '', state: '' },
+        { street: '', zip: '', city: '', state: '' },
+        { street: '', zip: '', city: '', state: '' },
       ];
     },
   },
