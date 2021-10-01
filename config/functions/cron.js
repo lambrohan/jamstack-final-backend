@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * Cron config that gives you an opportunity
@@ -10,7 +10,7 @@
  * See more details here: https://strapi.io/documentation/v3.x/concepts/configurations.html#cron-tasks
  */
 
-const stripe = require("stripe")(process.env.STRIPE_SK);
+const stripe = require('stripe')(`${process.env.STRIPE_SK}`);
 
 module.exports = {
   /**
@@ -20,7 +20,7 @@ module.exports = {
   // '0 1 * * 1': () => {
   //
   // }
-  "0 8 * * *": async () => {
+  '0 8 * * *': async () => {
     const subscriptions = await strapi.services.subscription.find({
       next_delivery: new Date(),
     });
@@ -29,7 +29,7 @@ module.exports = {
       subscriptions.map(async (subscription) => {
         const paymentMethods = await stripe.paymentMethods.list({
           customer: subscription.user.stripeID,
-          type: "card",
+          type: 'card',
         });
 
         const paymentMethod = paymentMethods.data.find(
@@ -39,7 +39,7 @@ module.exports = {
         try {
           const paymentIntent = await stripe.paymentIntents.create({
             amount: Math.round(subscription.variant.price * 1.075 * 100),
-            currency: "usd",
+            currency: 'usd',
             customer: subscription.user.stripeID,
             payment_method: paymentMethod.id,
             off_session: true,
@@ -51,7 +51,7 @@ module.exports = {
             billingAddress: subscription.billingAddress,
             shippingInfo: subscription.shippingInfo,
             billingInfo: subscription.billingInfo,
-            shippingOption: { label: "subscription", price: 0 },
+            shippingOption: { label: 'subscription', price: 0 },
             subtotal: subscription.variant.price,
             total: subscription.variant.price * 1.075,
             tax: subscription.variant.price * 0.075,
@@ -75,9 +75,9 @@ module.exports = {
             order
           );
 
-          await strapi.plugins["email"].services.email.send({
+          await strapi.plugins['email'].services.email.send({
             to: subscription.billingInfo.email,
-            subject: "VAR-X Order Confirmation",
+            subject: 'VAR-X Order Confirmation',
             html: confirmation,
           });
 

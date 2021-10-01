@@ -1,16 +1,16 @@
-"use strict";
+'use strict';
 
 /**
  * Read the documentation (https://strapi.io/documentation/v3.x/concepts/controllers.html#core-controllers)
  * to customize this controller
  */
-const { sanitizeEntity } = require("strapi-utils");
-const stripe = require("stripe")(process.env.STRIPE_SK);
-const GUEST_ID = "6028c24d9a75c1b684043d83";
+const { sanitizeEntity } = require('strapi-utils');
+const stripe = require('stripe')(`${process.env.STRIPE_SK}`);
+const GUEST_ID = '6028c24d9a75c1b684043d83';
 
 const sanitizeUser = (user) =>
   sanitizeEntity(user, {
-    model: strapi.query("user", "users-permissions").model,
+    model: strapi.query('user', 'users-permissions').model,
   });
 
 module.exports = {
@@ -44,9 +44,9 @@ module.exports = {
 
     //only executed after everything in Promise.all has completed SUCCESSFULLY
     const shippingOptions = [
-      { label: "FREE SHIPPING", price: 0 },
-      { label: "2-DAY SHIPPING", price: 9.99 },
-      { label: "OVERNIGHT SHIPPING", price: 29.99 },
+      { label: 'FREE SHIPPING', price: 0 },
+      { label: '2-DAY SHIPPING', price: 9.99 },
+      { label: 'OVERNIGHT SHIPPING', price: 29.99 },
     ];
 
     const shippingValid = shippingOptions.find(
@@ -59,7 +59,7 @@ module.exports = {
       shippingValid === undefined ||
       ((serverTotal + shippingValid.price) * 1.075).toFixed(2) !== total
     ) {
-      ctx.send({ error: "Invalid Cart" }, 400);
+      ctx.send({ error: 'Invalid Cart' }, 400);
     } else if (unavailable.length > 0) {
       ctx.send({ unavailable }, 409);
     } else {
@@ -77,7 +77,7 @@ module.exports = {
         if (savedCard) {
           const stripeMethods = await stripe.paymentMethods.list({
             customer: ctx.state.user.stripeID,
-            type: "card",
+            type: 'card',
           });
 
           saved = stripeMethods.data.find(
@@ -88,7 +88,7 @@ module.exports = {
         const intent = await stripe.paymentIntents.create(
           {
             amount: total * 100,
-            currency: "usd",
+            currency: 'usd',
             customer: ctx.state.user ? ctx.state.user.stripeID : undefined,
             receipt_email: email,
             payment_method: saved ? saved.id : undefined,
@@ -167,7 +167,7 @@ module.exports = {
 
       newMethods[cardSlot] = paymentMethod;
 
-      await strapi.plugins["users-permissions"].services.user.edit(
+      await strapi.plugins['users-permissions'].services.user.edit(
         { id: orderCustomer },
         { paymentMethods: newMethods }
       );
@@ -192,14 +192,14 @@ module.exports = {
 
     const confirmation = await strapi.services.order.confirmationEmail(order);
 
-    await strapi.plugins["email"].services.email.send({
+    await strapi.plugins['email'].services.email.send({
       to: order.billingInfo.email,
-      subject: "VAR-X Order Confirmation",
+      subject: 'VAR-X Order Confirmation',
       html: confirmation,
     });
 
-    if (order.user.username === "Guest") {
-      order.user = { username: "Guest" };
+    if (order.user.username === 'Guest') {
+      order.user = { username: 'Guest' };
     }
 
     ctx.send({ order }, 200);
@@ -211,7 +211,7 @@ module.exports = {
 
     const stripeMethods = await stripe.paymentMethods.list({
       customer: stripeID,
-      type: "card",
+      type: 'card',
     });
 
     const stripeCard = stripeMethods.data.find(
@@ -224,10 +224,10 @@ module.exports = {
 
     const cardSlot = newMethods.findIndex((method) => method.last4 === card);
 
-    newMethods[cardSlot] = { brand: "", last4: "" };
+    newMethods[cardSlot] = { brand: '', last4: '' };
 
     const newUser = await strapi.plugins[
-      "users-permissions"
+      'users-permissions'
     ].services.user.edit(
       { id: ctx.state.user.id },
       { paymentMethods: newMethods }

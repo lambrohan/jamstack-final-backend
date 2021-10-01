@@ -1,4 +1,4 @@
-var stripe = require('stripe')(process.env.STRIPE_SK);
+var stripe = require('stripe')(`${process.env.STRIPE_SK}`);
 
 module.exports = {
   lifecycles: {
