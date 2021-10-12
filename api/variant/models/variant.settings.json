@@ -2,18 +2,20 @@
   "kind": "collectionType",
   "collectionName": "variants",
   "info": {
-    "name": "Variant"
+    "name": "Variant",
+    "description": ""
   },
   "options": {
     "increments": true,
-    "timestamps": true
+    "timestamps": true,
+    "draftAndPublish": false
   },
   "attributes": {
     "size": {
       "type": "string",
       "required": false
     },
-    "color": {
+    "car_vin": {
       "type": "string",
       "required": true
     },
@@ -36,7 +38,8 @@
         "images"
       ],
       "plugin": "upload",
-      "required": true
+      "required": true,
+      "pluginOptions": {}
     },
     "product": {
       "via": "variants",
@@ -51,6 +54,239 @@
         "red",
         "tan"
       ]
+    },
+    "model": {
+      "type": "string"
+    },
+    "year": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "text"
+    },
+    "car_fuel_economy": {
+      "type": "string"
+    },
+    "car_exterior_color": {
+      "type": "string"
+    },
+    "car_interior_color": {
+      "type": "string"
+    },
+    "car_transmission": {
+      "type": "string"
+    },
+    "car_drivetrain": {
+      "type": "string"
+    },
+    "car_engine": {
+      "type": "string"
+    },
+    "car_highlighted_features_1_feature": {
+      "type": "string"
+    },
+    "car_highlighted_features_2_feature": {
+      "type": "string"
+    },
+    "car_highlighted_features_3_feature": {
+      "type": "string"
+    },
+    "car_highlighted_features_4_feature": {
+      "type": "string"
+    },
+    "car_highlighted_features_5_feature": {
+      "type": "string"
+    },
+    "car_highlighted_features_6_feature": {
+      "type": "string"
+    },
+    "car_highlighted_features_7_feature": {
+      "type": "string"
+    },
+    "car_highlighted_features_8_feature": {
+      "type": "string"
+    },
+    "car_package_options_1_name": {
+      "type": "string"
+    },
+    "car_package_options_1_price": {
+      "type": "string"
+    },
+    "car_package_options_1_attribute_1": {
+      "type": "string"
+    },
+    "car_package_options_1_attribute_2": {
+      "type": "string"
+    },
+    "car_package_options_1_attribute_3": {
+      "type": "string"
+    },
+    "car_package_options_1_attribute_10": {
+      "type": "string"
+    },
+    "car_package_options_1_attribute_11": {
+      "type": "string"
+    },
+    "car_package_options_1_attribute_12": {
+      "type": "string"
+    },
+    "car_package_options_2_name": {
+      "type": "string"
+    },
+    "car_package_options_2_price": {
+      "type": "integer"
+    },
+    "car_package_options_2_attribute_1": {
+      "type": "string"
+    },
+    "car_package_options_2_attribute_2": {
+      "type": "string"
+    },
+    "car_package_options_2_attribute_3": {
+      "type": "string"
+    },
+    "car_package_options_2_attribute_10": {
+      "type": "string"
+    },
+    "car_package_options_2_attribute_11": {
+      "type": "string"
+    },
+    "car_package_options_2_attribute_12": {
+      "type": "string"
+    },
+    "car_package_options_3_name": {
+      "type": "string"
+    },
+    "car_package_options_3_price": {
+      "type": "integer"
+    },
+    "car_package_options_3_attribute_1": {
+      "type": "string"
+    },
+    "car_package_options_3_attribute_2": {
+      "type": "string"
+    },
+    "car_package_options_3_attribute_3": {
+      "type": "string"
+    },
+    "car_package_options_3_attribute_10": {
+      "type": "string"
+    },
+    "car_package_options_3_attribute_11": {
+      "type": "string"
+    },
+    "car_package_options_3_attribute_12": {
+      "type": "string"
+    },
+    "car_package_options_4_name": {
+      "type": "string"
+    },
+    "car_package_options_4_price": {
+      "type": "integer"
+    },
+    "car_package_options_4_attribute_1": {
+      "type": "string"
+    },
+    "car_package_options_4_attribute_2": {
+      "type": "string"
+    },
+    "car_package_options_4_attribute_3": {
+      "type": "string"
+    },
+    "car_package_options_4_attribute_10": {
+      "type": "string"
+    },
+    "car_package_options_4_attribute_11": {
+      "type": "string"
+    },
+    "car_package_options_4_attribute_12": {
+      "type": "string"
+    },
+    "car_package_options_5_name": {
+      "type": "string"
+    },
+    "car_package_options_5_price": {
+      "type": "integer"
+    },
+    "car_package_options_5_attribute_1": {
+      "type": "string"
+    },
+    "car_package_options_5_attribute_2": {
+      "type": "string"
+    },
+    "car_package_options_5_attribute_3": {
+      "type": "string"
+    },
+    "car_package_options_5_attribute_10": {
+      "type": "string"
+    },
+    "car_package_options_5_attribute_11": {
+      "type": "string"
+    },
+    "car_package_options_5_attribute_12": {
+      "type": "string"
+    },
+    "car_package_options_6_name": {
+      "type": "string"
+    },
+    "car_package_options_6_price": {
+      "type": "integer"
+    },
+    "car_package_options_6_attribute_1": {
+      "type": "string"
+    },
+    "car_package_options_6_attribute_2": {
+      "type": "string"
+    },
+    "car_package_options_6_attribute_3": {
+      "type": "string"
+    },
+    "car_special": {
+      "type": "integer"
+    },
+    "dealership": {
+      "type": "string"
+    },
+    "vehicle_status": {
+      "type": "string"
+    },
+    "image_source_list": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "car_name": {
+      "type": "string"
+    },
+    "car_price": {
+      "type": "integer"
+    },
+    "car_info": {
+      "type": "string"
+    },
+    "car_info2": {
+      "type": "string"
+    },
+    "car_stock": {
+      "type": "string"
+    },
+    "car_url": {
+      "type": "string"
+    },
+    "image_source_1": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
     }
   }
 }
