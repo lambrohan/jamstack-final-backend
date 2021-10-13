@@ -1,8 +1,8 @@
 module.exports = ({ env }) => ({
-  host: env('HOST', '0.0.0.0'),
-  port: env.int('PORT', 80),
+  host: env('HOST', '127.0.0.1'),
+  port: env.int('PORT', 10080),
   cron: { enabled: true },
-  url: env('URL', 'http://localhost'),
+//  url: env('URL', 'http://localhost'),
 
 
   admin: {
