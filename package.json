@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "description": "The Strapi backend of a JAMstack e-commerce platform built for a Udemy course.",
   "scripts": {
-    "develop": "strapi develop",
+    "develop": "PORT=1337 strapi develop",
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi"
