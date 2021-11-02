@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "firebase_users",
+  "info": {
+    "name": "Firebase User"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "uid": {
+      "type": "string"
+    },
+    "password": {
+      "type": "password",
+      "required": true,
+      "minLength": 8
+    }
+  }
+}
