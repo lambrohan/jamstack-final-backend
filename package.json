@@ -11,6 +11,7 @@
   },
   "devDependencies": {},
   "dependencies": {
+    "firebase-admin": "^10.0.0",
     "strapi": "3.6.8",
     "strapi-admin": "3.6.8",
     "strapi-connector-mongoose": "3.6.8",
