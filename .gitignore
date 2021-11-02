@@ -112,3 +112,8 @@ license.txt
 exports
 .cache
 build
+
+################
+# Firebase
+###############
+serviceAccountKey.json

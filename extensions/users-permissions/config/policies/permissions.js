@@ -1,42 +1,23 @@
+"use strict";
+
 const _ = require("lodash");
 
 module.exports = async (ctx, next) => {
   let role;
-
   if (ctx.state.user) {
     // request is already authenticated in a different way
+
     return next();
   }
 
   if (ctx.request && ctx.request.header && ctx.request.header.authorization) {
     try {
-      const { id } = await strapi.plugins[
-        "users-permissions"
-      ].services.jwt.getToken(ctx);
-
-      if (id === undefined) {
-        throw new Error("Invalid token: Token did not contain required fields");
-      }
-
-      // fetch authenticated user
-      ctx.state.user = await strapi.plugins[
-        "users-permissions"
-      ].services.user.fetchAuthenticatedUser(id);
+      const token = ctx.request.header.authorization.split(" ")[1];
+      const decodedToken = await strapi.firebase.auth().verifyIdToken(token);
+      console.log(decodedToken);
+      ctx.state.user = { ...decodedToken };
     } catch (err) {
-      // decode firebase tokens
-      try {
-        const idToken = ctx.request.header.authorization.split(" ")[1];
-        const decodedToken = await strapi.firebase
-          .auth()
-          .verifyIdToken(idToken);
-        ctx.state.user = { ...decodedToken };
-        if (decodedToken.strapi_uid) {
-          ctx.state.user.id = decodedToken.strapi_uid;
-        }
-        return await next();
-      } catch (error) {
-        return handleErrors(ctx, err, "unauthorized");
-      }
+      return handleErrors(ctx, err, "unauthorized");
     }
 
     if (!ctx.state.user) {
