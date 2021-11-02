@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^0.21.4",
     "firebase-admin": "^10.0.0",
+    "lodash": "^4.17.21",
     "strapi": "3.6.8",
     "strapi-admin": "3.6.8",
     "strapi-connector-mongoose": "3.6.8",
